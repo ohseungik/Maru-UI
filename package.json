@@ -1,0 +1,20 @@
+{
+  "name": "maru-ui-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "React + TypeScript 디자인 시스템 · CSS 변수 토큰 · a11y 테스트 · Storybook",
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev --filter=@ohseungik/maru-docs",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0"
+  }
+}
