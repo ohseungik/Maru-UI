@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+storybook-static/
+*.tsbuildinfo
+
+# tooling caches
+.turbo/
+.cache/
+coverage/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
