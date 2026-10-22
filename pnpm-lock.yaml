@@ -39,6 +39,8 @@ importers:
         specifier: ^8.38.0
         version: 8.72.0(eslint@9.39.5)(typescript@5.9.3)
 
+  packages/tokens: {}
+
 packages:
 
   '@eslint-community/eslint-utils@4.10.1':

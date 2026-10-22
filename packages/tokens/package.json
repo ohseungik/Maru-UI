@@ -1,0 +1,43 @@
+{
+  "name": "@ohseungik/maru-tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for Maru UI: CSS variables (light/dark) and typed values.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "css-variables",
+    "dark-mode"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohseungik/Maru-UI.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://ohseungik.github.io/Maru-UI/",
+  "bugs": {
+    "url": "https://github.com/ohseungik/Maru-UI/issues"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./css": "./dist/tokens.css",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test"
+  }
+}
