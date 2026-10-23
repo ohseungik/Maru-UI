@@ -1,0 +1,133 @@
+/*
+ * Component tokens (--button-*) map semantic tokens to this component.
+ * Variants and sizes only change these variables, never the rules below.
+ */
+.root {
+  --button-bg: var(--maru-color-action-bg);
+  --button-bg-hover: var(--maru-color-action-bg-hover);
+  --button-bg-active: var(--maru-color-action-bg-active);
+  --button-fg: var(--maru-color-action-fg);
+  --button-border: transparent;
+
+  --button-height: 2.5rem;
+  --button-padding-x: var(--maru-space-4);
+  --button-font-size: var(--maru-font-size-md);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--maru-space-2);
+  box-sizing: border-box;
+  min-height: var(--button-height);
+  padding-block: 0;
+  padding-inline: var(--button-padding-x);
+  border: 1px solid var(--button-border);
+  border-radius: var(--maru-radius-md);
+  background: var(--button-bg);
+  color: var(--button-fg);
+  font: inherit;
+  font-size: var(--button-font-size);
+  font-weight: var(--maru-font-weight-medium);
+  line-height: var(--maru-font-line-height-tight);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--maru-motion-duration-fast) var(--maru-motion-easing-standard);
+}
+
+/* ---- sizes ---- */
+
+.root[data-size='sm'] {
+  --button-height: 2rem;
+  --button-padding-x: var(--maru-space-3);
+  --button-font-size: var(--maru-font-size-sm);
+}
+
+.root[data-size='lg'] {
+  --button-height: 3rem;
+  --button-padding-x: var(--maru-space-6);
+  --button-font-size: var(--maru-font-size-lg);
+}
+
+/* ---- variants ---- */
+
+.root[data-variant='secondary'] {
+  --button-bg: var(--maru-color-neutral-bg);
+  --button-bg-hover: var(--maru-color-neutral-bg-hover);
+  --button-bg-active: var(--maru-color-neutral-bg-active);
+  --button-fg: var(--maru-color-neutral-fg);
+  --button-border: var(--maru-color-border-strong);
+}
+
+.root[data-variant='ghost'] {
+  --button-bg: transparent;
+  --button-bg-hover: var(--maru-color-action-ghost-bg-hover);
+  --button-bg-active: var(--maru-color-action-ghost-bg-active);
+  --button-fg: var(--maru-color-action-text);
+}
+
+.root[data-variant='danger'] {
+  --button-bg: var(--maru-color-danger-bg);
+  --button-bg-hover: var(--maru-color-danger-bg-hover);
+  --button-bg-active: var(--maru-color-danger-bg-active);
+  --button-fg: var(--maru-color-danger-fg);
+}
+
+/* ---- states ---- */
+
+.root:not(:disabled):hover {
+  background: var(--button-bg-hover);
+}
+
+.root:not(:disabled):active {
+  background: var(--button-bg-active);
+}
+
+.root:focus-visible {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+.root:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.root[data-loading]:disabled {
+  opacity: 0.8;
+  cursor: progress;
+}
+
+/* ---- spinner ---- */
+
+.spinner {
+  width: 1em;
+  height: 1em;
+  box-sizing: border-box;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+/* Windows High Contrast: backgrounds are dropped, so keep a visible edge. */
+@media (forced-colors: active) {
+  .root {
+    border-color: ButtonText;
+  }
+
+  .root:disabled {
+    border-color: GrayText;
+  }
+}
