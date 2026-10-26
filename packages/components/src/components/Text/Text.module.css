@@ -1,0 +1,58 @@
+.root {
+  margin: 0;
+  color: var(--maru-color-text-default);
+  font-family: inherit;
+  font-size: var(--maru-font-size-md);
+  font-weight: var(--maru-font-weight-regular);
+  line-height: var(--maru-font-line-height-normal);
+}
+
+/* ---- size ---- */
+
+.root[data-size='xs'] {
+  font-size: var(--maru-font-size-xs);
+}
+
+.root[data-size='sm'] {
+  font-size: var(--maru-font-size-sm);
+}
+
+.root[data-size='md'] {
+  font-size: var(--maru-font-size-md);
+}
+
+.root[data-size='lg'] {
+  font-size: var(--maru-font-size-lg);
+}
+
+.root[data-size='xl'] {
+  font-size: var(--maru-font-size-xl);
+}
+
+/* ---- tone ---- */
+
+.root[data-tone='muted'] {
+  color: var(--maru-color-text-muted);
+}
+
+.root[data-tone='danger'] {
+  color: var(--maru-color-text-danger);
+}
+
+/* ---- weight (also overrides the UA style of <strong>) ---- */
+
+.root[data-weight='regular'] {
+  font-weight: var(--maru-font-weight-regular);
+}
+
+.root[data-weight='medium'] {
+  font-weight: var(--maru-font-weight-medium);
+}
+
+.root[data-weight='semibold'] {
+  font-weight: var(--maru-font-weight-semibold);
+}
+
+.root[data-weight='bold'] {
+  font-weight: var(--maru-font-weight-bold);
+}

@@ -1,0 +1,49 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--maru-stack-gap, var(--maru-space-4));
+}
+
+.root[data-direction='horizontal'] {
+  flex-direction: row;
+}
+
+.root[data-wrap] {
+  flex-wrap: wrap;
+}
+
+/* ---- cross axis ---- */
+
+.root[data-align='start'] {
+  align-items: flex-start;
+}
+
+.root[data-align='center'] {
+  align-items: center;
+}
+
+.root[data-align='end'] {
+  align-items: flex-end;
+}
+
+.root[data-align='stretch'] {
+  align-items: stretch;
+}
+
+/* ---- main axis ---- */
+
+.root[data-justify='start'] {
+  justify-content: flex-start;
+}
+
+.root[data-justify='center'] {
+  justify-content: center;
+}
+
+.root[data-justify='end'] {
+  justify-content: flex-end;
+}
+
+.root[data-justify='between'] {
+  justify-content: space-between;
+}
