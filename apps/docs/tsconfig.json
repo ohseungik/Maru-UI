@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["vite/client", "node"],
+    "paths": {
+      "@ohseungik/maru-ui": ["../../packages/components/src/index.ts"]
+    }
+  },
+  "include": [".storybook", "stories"]
+}
