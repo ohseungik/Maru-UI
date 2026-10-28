@@ -15,9 +15,12 @@
     "typecheck": "turbo run typecheck",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "changeset": "changeset",
+    "release": "turbo run build --filter=./packages/* && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.0",
     "@eslint/js": "^9.30.0",
     "eslint": "^9.30.0",
     "eslint-config-prettier": "^10.1.5",
