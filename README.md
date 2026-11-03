@@ -96,7 +96,7 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 | Button         |  ✅  |      ✅       |     ✅      | 직접 구현                   |
 | Text / Heading |  ✅  |      ✅       |     ✅      | level과 시각 크기를 분리    |
 | Stack          |  ✅  |      ✅       |     ✅      | 레이아웃 프리미티브         |
-| Input / Field  |  ☐   |       ☐       |      ☐      | 라벨·에러 연결              |
+| Input / Field  |  ✅  |      ✅       |     ✅      | 라벨·에러 연결              |
 | Checkbox       |  ☐   |       ☐       |      ☐      | 직접 구현                   |
 | Switch         |  ☐   |       ☐       |      ☐      | 직접 구현                   |
 | Tabs           |  ☐   |       ☐       |      ☐      | 직접 구현 (roving tabindex) |
@@ -121,7 +121,7 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 - **단위/인터랙션 테스트**: Vitest + Testing Library. 키보드 조작, 비활성·로딩 상태, 폼 연동을 검증합니다.
 - **접근성**: axe-core 자동 검사, `eslint-plugin-jsx-a11y`, Storybook a11y 패널
 - **색상 대비**: 토큰 테스트가 라이트·다크 양쪽에서 텍스트 4.5:1, 포커스 링·컨트롤 테두리 3:1(WCAG AA)을 검증합니다. jsdom은 대비를 계산할 수 없어서 컴포넌트 테스트에서는 이 규칙을 끄고 토큰 단계에서 보장합니다.
-- **SSR**: 컴포넌트는 훅이나 브라우저 API를 쓰지 않고, `renderToString` 렌더링 테스트가 있습니다.
+- **SSR**: 브라우저 API를 쓰지 않고, id가 필요한 `Field`는 `useId`로 서버와 클라이언트의 id를 일치시킵니다. `renderToString` 렌더링 테스트가 있습니다.
 - **계획**: Playwright 시각 회귀 테스트, 번들 크기 리포트
 
 ## CI/CD (GitHub Actions)
@@ -178,7 +178,8 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 
 ### 2주차: 인터랙션과 접근성
 
-- [ ] Input/Field, Checkbox, Switch, Tabs
+- [x] Input/Field
+- [ ] Checkbox, Switch, Tabs
 - [ ] Dialog, Select, Tooltip
 - [ ] 컴포넌트별 키보드·axe 테스트
 - [ ] 다크모드 토글 스토리 보강

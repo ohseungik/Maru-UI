@@ -1,6 +1,6 @@
 import { renderToString } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { Button, Heading, Stack, Text } from './index';
+import { Button, Field, Heading, Input, Stack, Text } from './index';
 
 describe('server rendering', () => {
   it('renders every component to a string', () => {
@@ -17,5 +17,24 @@ describe('server rendering', () => {
     expect(html).toContain('<h1');
     expect(html).toContain('data-variant="primary"');
     expect(html).toContain('aria-busy="true"');
+  });
+
+  it('gives a Field the same ids in label, control and description', () => {
+    const html = renderToString(
+      <Field label="Email" description="We never share it." error="Required">
+        <Input />
+      </Field>,
+    );
+
+    const labelFor = /<label for="([^"]+)"/.exec(html)?.[1];
+    const inputId = /<input[^>]* id="([^"]+)"/.exec(html)?.[1];
+    expect(labelFor).toBeTruthy();
+    expect(inputId).toBe(labelFor);
+
+    const describedBy = /aria-describedby="([^"]+)"/.exec(html)?.[1] ?? '';
+    for (const id of describedBy.split(' ')) {
+      expect(html).toContain(`id="${id}"`);
+    }
+    expect(html).toContain('aria-invalid="true"');
   });
 });

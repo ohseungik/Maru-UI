@@ -1,0 +1,76 @@
+/*
+ * Component tokens (--input-*) map semantic tokens to this component.
+ * Sizes and the invalid state only change these variables.
+ */
+.root {
+  --input-border: var(--maru-color-border-strong);
+  --input-height: 2.5rem;
+  --input-padding-x: var(--maru-space-3);
+  --input-font-size: var(--maru-font-size-md);
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--input-height);
+  padding-block: 0;
+  padding-inline: var(--input-padding-x);
+  border: 1px solid var(--input-border);
+  border-radius: var(--maru-radius-md);
+  background: var(--maru-color-bg-default);
+  color: var(--maru-color-text-default);
+  font: inherit;
+  font-size: var(--input-font-size);
+  line-height: var(--maru-font-line-height-tight);
+  transition: border-color var(--maru-motion-duration-fast) var(--maru-motion-easing-standard);
+}
+
+/* ---- sizes ---- */
+
+.root[data-size='sm'] {
+  --input-height: 2rem;
+  --input-padding-x: var(--maru-space-2);
+  --input-font-size: var(--maru-font-size-sm);
+}
+
+.root[data-size='lg'] {
+  --input-height: 3rem;
+  --input-padding-x: var(--maru-space-4);
+  --input-font-size: var(--maru-font-size-lg);
+}
+
+/* ---- states ---- */
+
+.root::placeholder {
+  color: var(--maru-color-text-muted);
+}
+
+.root:not(:disabled):hover {
+  --input-border: var(--maru-color-text-default);
+}
+
+/* Listed after :hover and with the same specificity, so invalid wins over hover. */
+.root[data-invalid],
+.root[data-invalid]:not(:disabled):hover {
+  --input-border: var(--maru-color-text-danger);
+}
+
+.root:focus-visible {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+.root:disabled {
+  background: var(--maru-color-bg-subtle);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Windows High Contrast: keep a system-colored edge. */
+@media (forced-colors: active) {
+  .root {
+    border-color: FieldText;
+  }
+
+  .root:disabled {
+    border-color: GrayText;
+  }
+}

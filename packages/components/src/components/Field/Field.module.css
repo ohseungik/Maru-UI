@@ -1,0 +1,33 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--maru-space-1);
+  font-family: var(--maru-font-family-sans);
+}
+
+.label {
+  color: var(--maru-color-text-default);
+  font-size: var(--maru-font-size-sm);
+  font-weight: var(--maru-font-weight-medium);
+  line-height: var(--maru-font-line-height-tight);
+}
+
+.required {
+  color: var(--maru-color-text-danger);
+}
+
+.description,
+.error {
+  margin: 0;
+  font-size: var(--maru-font-size-sm);
+  line-height: var(--maru-font-line-height-normal);
+}
+
+.description {
+  color: var(--maru-color-text-muted);
+}
+
+.error {
+  color: var(--maru-color-text-danger);
+  font-weight: var(--maru-font-weight-medium);
+}
