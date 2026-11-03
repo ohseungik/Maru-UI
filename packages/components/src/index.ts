@@ -2,6 +2,9 @@
 export { Button } from './components/Button';
 export type { ButtonProps, ButtonSize, ButtonVariant } from './components/Button';
 
+export { Checkbox } from './components/Checkbox';
+export type { CheckboxProps, CheckboxSize } from './components/Checkbox';
+
 export { Field } from './components/Field';
 export type { FieldProps } from './components/Field';
 
@@ -13,6 +16,9 @@ export type { InputProps, InputSize } from './components/Input';
 
 export { Stack } from './components/Stack';
 export type { StackElement, StackGap, StackProps } from './components/Stack';
+
+export { Switch } from './components/Switch';
+export type { SwitchProps, SwitchSize } from './components/Switch';
 
 export { Text } from './components/Text';
 export type { TextElement, TextProps, TextSize, TextTone, TextWeight } from './components/Text';

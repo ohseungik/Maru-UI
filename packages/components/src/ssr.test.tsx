@@ -1,6 +1,6 @@
 import { renderToString } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { Button, Field, Heading, Input, Stack, Text } from './index';
+import { Button, Checkbox, Field, Heading, Input, Stack, Switch, Text } from './index';
 
 describe('server rendering', () => {
   it('renders every component to a string', () => {
@@ -36,5 +36,21 @@ describe('server rendering', () => {
       expect(html).toContain(`id="${id}"`);
     }
     expect(html).toContain('aria-invalid="true"');
+  });
+
+  it('renders Checkbox and Switch with their native state', () => {
+    const html = renderToString(
+      <Stack>
+        <Checkbox defaultChecked>Accept</Checkbox>
+        <Checkbox indeterminate>Select all</Checkbox>
+        <Switch defaultChecked>Notifications</Switch>
+      </Stack>,
+    );
+
+    expect(html).toContain('type="checkbox"');
+    expect(html).toContain('role="switch"');
+    expect(html).toContain('checked=""');
+    // Indeterminate is a DOM property set after hydration, never part of the markup.
+    expect(html).not.toContain('indeterminate');
   });
 });

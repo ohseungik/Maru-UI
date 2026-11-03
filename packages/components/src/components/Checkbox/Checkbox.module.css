@@ -1,0 +1,144 @@
+/*
+ * Component tokens (--checkbox-*) map semantic tokens to this component.
+ * The real <input> stays in the page (invisible, on top of the box) so focus,
+ * keyboard, forms and assistive technology all use the native control.
+ */
+.root {
+  --checkbox-size: 1.25rem;
+  --checkbox-font-size: var(--maru-font-size-md);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--maru-space-2);
+  color: var(--maru-color-text-default);
+  font-family: var(--maru-font-family-sans);
+  font-size: var(--checkbox-font-size);
+  line-height: var(--maru-font-line-height-tight);
+  cursor: pointer;
+}
+
+.root[data-size='sm'] {
+  --checkbox-size: 1rem;
+  --checkbox-font-size: var(--maru-font-size-sm);
+}
+
+.root[data-size='lg'] {
+  --checkbox-size: 1.5rem;
+  --checkbox-font-size: var(--maru-font-size-lg);
+}
+
+.control {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.input {
+  /* Above the box and its transformed mark, so the real input always gets the pointer. */
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  border: 1px solid var(--maru-color-border-strong);
+  border-radius: var(--maru-radius-sm);
+  background: var(--maru-color-bg-default);
+  color: var(--maru-color-action-fg);
+  transition:
+    background-color var(--maru-motion-duration-fast) var(--maru-motion-easing-standard),
+    border-color var(--maru-motion-duration-fast) var(--maru-motion-easing-standard);
+}
+
+/* ---- marks ---- */
+
+.input:checked + .box::after {
+  content: '';
+  box-sizing: border-box;
+  width: 28%;
+  height: 56%;
+  margin-block-end: 8%;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.input:indeterminate + .box::after {
+  content: '';
+  box-sizing: border-box;
+  width: 56%;
+  height: 0;
+  margin: 0;
+  border: solid currentColor;
+  border-width: 0 0 2px;
+  transform: none;
+}
+
+/* ---- states ---- */
+
+.input:checked + .box,
+.input:indeterminate + .box {
+  border-color: var(--maru-color-action-bg);
+  background: var(--maru-color-action-bg);
+}
+
+.root:not([data-disabled]):hover .input:not(:checked):not(:indeterminate) + .box {
+  border-color: var(--maru-color-text-default);
+}
+
+.root:not([data-disabled]):hover .input:checked + .box,
+.root:not([data-disabled]):hover .input:indeterminate + .box {
+  border-color: var(--maru-color-action-bg-hover);
+  background: var(--maru-color-action-bg-hover);
+}
+
+.input[data-invalid] + .box,
+.root:not([data-disabled]):hover .input[data-invalid]:not(:checked):not(:indeterminate) + .box {
+  border-color: var(--maru-color-text-danger);
+}
+
+.input:focus-visible + .box {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+.root[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Windows High Contrast: use system colors so the box and mark stay visible. */
+@media (forced-colors: active) {
+  .box {
+    border-color: ButtonText;
+    background: Canvas;
+    color: HighlightText;
+  }
+
+  .input:checked + .box,
+  .input:indeterminate + .box {
+    border-color: Highlight;
+    background: Highlight;
+  }
+
+  /* The danger color is dropped in this mode, so invalid gets a thicker edge instead. */
+  .input[data-invalid] + .box {
+    border-color: ButtonText;
+    border-width: 3px;
+  }
+
+  .root[data-disabled] .box {
+    border-color: GrayText;
+  }
+}

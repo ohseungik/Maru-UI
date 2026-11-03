@@ -1,0 +1,136 @@
+/*
+ * Component tokens (--switch-*) map semantic tokens to this component.
+ * The real <input role="switch"> stays in the page (invisible, on top of the
+ * track), so focus, keyboard, forms and assistive technology use the native control.
+ */
+.root {
+  --switch-height: 1.5rem;
+  --switch-width: 2.75rem;
+  --switch-padding: 2px;
+  --switch-font-size: var(--maru-font-size-md);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--maru-space-3);
+  color: var(--maru-color-text-default);
+  font-family: var(--maru-font-family-sans);
+  font-size: var(--switch-font-size);
+  line-height: var(--maru-font-line-height-tight);
+  cursor: pointer;
+}
+
+.root[data-size='sm'] {
+  --switch-height: 1.25rem;
+  --switch-width: 2.25rem;
+  --switch-font-size: var(--maru-font-size-sm);
+}
+
+.root[data-size='lg'] {
+  --switch-height: 1.75rem;
+  --switch-width: 3.25rem;
+  --switch-font-size: var(--maru-font-size-lg);
+}
+
+.control {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.input {
+  /* Above the box and its transformed mark, so the real input always gets the pointer. */
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.track {
+  --switch-thumb: calc(var(--switch-height) - 2 * var(--switch-padding) - 2px);
+
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  padding-inline: var(--switch-padding);
+  border: 1px solid var(--maru-color-border-strong);
+  border-radius: var(--maru-radius-full);
+  background: var(--maru-color-border-strong);
+  transition:
+    background-color var(--maru-motion-duration-fast) var(--maru-motion-easing-standard),
+    border-color var(--maru-motion-duration-fast) var(--maru-motion-easing-standard);
+}
+
+.track::after {
+  content: '';
+  width: var(--switch-thumb);
+  height: var(--switch-thumb);
+  border-radius: var(--maru-radius-full);
+  background: var(--maru-color-bg-default);
+  transition: transform var(--maru-motion-duration-fast) var(--maru-motion-easing-standard);
+}
+
+/* ---- states ---- */
+
+.input:checked + .track {
+  border-color: var(--maru-color-action-bg);
+  background: var(--maru-color-action-bg);
+}
+
+.input:checked + .track::after {
+  transform: translateX(
+    calc(var(--switch-width) - var(--switch-thumb) - 2 * var(--switch-padding) - 2px)
+  );
+}
+
+.root:not([data-disabled]):hover .input:checked + .track {
+  border-color: var(--maru-color-action-bg-hover);
+  background: var(--maru-color-action-bg-hover);
+}
+
+.input:focus-visible + .track {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+.root[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .track::after {
+    transition: none;
+  }
+}
+
+/* Windows High Contrast: system colors keep the on/off difference visible. */
+@media (forced-colors: active) {
+  .track {
+    border-color: ButtonText;
+    background: Canvas;
+  }
+
+  .track::after {
+    background: ButtonText;
+  }
+
+  .input:checked + .track {
+    border-color: Highlight;
+    background: Highlight;
+  }
+
+  .input:checked + .track::after {
+    background: HighlightText;
+  }
+
+  .root[data-disabled] .track {
+    border-color: GrayText;
+  }
+}
