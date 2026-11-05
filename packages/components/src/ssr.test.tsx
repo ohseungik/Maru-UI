@@ -1,6 +1,19 @@
 import { renderToString } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { Button, Checkbox, Field, Heading, Input, Stack, Switch, Text } from './index';
+import {
+  Button,
+  Checkbox,
+  Field,
+  Heading,
+  Input,
+  Stack,
+  Switch,
+  Tab,
+  TabList,
+  TabPanel,
+  Tabs,
+  Text,
+} from './index';
 
 describe('server rendering', () => {
   it('renders every component to a string', () => {
@@ -52,5 +65,27 @@ describe('server rendering', () => {
     expect(html).toContain('checked=""');
     // Indeterminate is a DOM property set after hydration, never part of the markup.
     expect(html).not.toContain('indeterminate');
+  });
+
+  it('renders Tabs with matching tab and panel ids', () => {
+    const html = renderToString(
+      <Tabs defaultValue="b">
+        <TabList aria-label="Demo">
+          <Tab value="a">A</Tab>
+          <Tab value="b">B</Tab>
+        </TabList>
+        <TabPanel value="a">A content</TabPanel>
+        <TabPanel value="b">B content</TabPanel>
+      </Tabs>,
+    );
+
+    expect(html).toContain('role="tablist"');
+    expect(html).toContain('aria-selected="true"');
+    expect(html).toContain('B content');
+    expect(html).not.toContain('A content');
+
+    const controls = /aria-controls="([^"]+)"/.exec(html)?.[1];
+    expect(controls).toBeTruthy();
+    expect(html).toContain(`id="${controls}"`);
   });
 });

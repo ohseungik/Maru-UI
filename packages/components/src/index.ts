@@ -20,5 +20,15 @@ export type { StackElement, StackGap, StackProps } from './components/Stack';
 export { Switch } from './components/Switch';
 export type { SwitchProps, SwitchSize } from './components/Switch';
 
+export { Tab, TabList, TabPanel, Tabs } from './components/Tabs';
+export type {
+  TabListProps,
+  TabPanelProps,
+  TabProps,
+  TabsActivation,
+  TabsOrientation,
+  TabsProps,
+} from './components/Tabs';
+
 export { Text } from './components/Text';
 export type { TextElement, TextProps, TextSize, TextTone, TextWeight } from './components/Text';

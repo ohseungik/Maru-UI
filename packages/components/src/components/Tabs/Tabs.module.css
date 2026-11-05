@@ -1,0 +1,114 @@
+/*
+ * Component tokens (--tab-*) map semantic tokens to this component. The selected
+ * state only changes these variables.
+ */
+.root {
+  font-family: var(--maru-font-family-sans);
+  color: var(--maru-color-text-default);
+}
+
+.root[data-orientation='vertical'] {
+  display: flex;
+  gap: var(--maru-space-6);
+}
+
+.list {
+  display: flex;
+  border-bottom: 1px solid var(--maru-color-border-default);
+}
+
+.list[data-orientation='vertical'] {
+  flex-direction: column;
+  flex: none;
+  border-bottom: 0;
+  border-inline-end: 1px solid var(--maru-color-border-default);
+}
+
+.tab {
+  --tab-fg: var(--maru-color-text-muted);
+  --tab-indicator: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 2.5rem;
+  margin: 0 0 -1px;
+  padding-block: 0;
+  padding-inline: var(--maru-space-4);
+  border: 0;
+  border-bottom: 2px solid var(--tab-indicator);
+  background: transparent;
+  color: var(--tab-fg);
+  font: inherit;
+  font-size: var(--maru-font-size-md);
+  font-weight: var(--maru-font-weight-medium);
+  line-height: var(--maru-font-line-height-tight);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--maru-motion-duration-fast) var(--maru-motion-easing-standard);
+}
+
+.tab[data-orientation='vertical'] {
+  justify-content: flex-start;
+  margin: 0 -1px 0 0;
+  border-bottom: 0;
+  border-inline-end: 2px solid var(--tab-indicator);
+}
+
+.tab:not(:disabled):hover {
+  --tab-fg: var(--maru-color-text-default);
+}
+
+.tab[data-selected] {
+  --tab-fg: var(--maru-color-text-default);
+  --tab-indicator: var(--maru-color-action-bg);
+}
+
+.tab:focus-visible,
+.panel:focus-visible {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+.tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* No display rule here: the hidden attribute must be able to hide inactive panels. */
+.panel {
+  padding-block: var(--maru-space-4);
+}
+
+.root[data-orientation='vertical'] .panel {
+  padding-block: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}
+
+/*
+ * Windows High Contrast: a transparent border is drawn in the text color, so inactive
+ * tabs use the page color (Canvas) and only the selected tab gets a visible edge.
+ */
+@media (forced-colors: active) {
+  .tab {
+    --tab-indicator: Canvas;
+    margin-bottom: 0;
+  }
+
+  .tab[data-orientation='vertical'] {
+    margin-inline-end: 0;
+  }
+
+  .tab[data-selected] {
+    --tab-indicator: Highlight;
+  }
+
+  .tab:disabled {
+    color: GrayText;
+  }
+}

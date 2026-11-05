@@ -99,7 +99,7 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 | Input / Field  |  ✅  |      ✅       |     ✅      | 라벨·에러 연결              |
 | Checkbox       |  ✅  |      ✅       |     ✅      | 직접 구현                   |
 | Switch         |  ✅  |      ✅       |     ✅      | 직접 구현                   |
-| Tabs           |  ☐   |       ☐       |      ☐      | 직접 구현 (roving tabindex) |
+| Tabs           |  ✅  |      ✅       |     ✅      | 직접 구현 (roving tabindex) |
 | Dialog         |  ☐   |       ☐       |      ☐      | headless 라이브러리 래핑    |
 | Select         |  ☐   |       ☐       |      ☐      | headless 라이브러리 래핑    |
 | Tooltip        |  ☐   |       ☐       |      ☐      |                             |
@@ -180,7 +180,7 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 
 - [x] Input/Field
 - [x] Checkbox, Switch
-- [ ] Tabs
+- [x] Tabs
 - [ ] Dialog, Select, Tooltip
 - [ ] 컴포넌트별 키보드·axe 테스트
 - [ ] 다크모드 토글 스토리 보강
