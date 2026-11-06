@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   Button,
   Checkbox,
+  Dialog,
   Field,
   Heading,
   Input,
@@ -87,5 +88,25 @@ describe('server rendering', () => {
     const controls = /aria-controls="([^"]+)"/.exec(html)?.[1];
     expect(controls).toBeTruthy();
     expect(html).toContain(`id="${controls}"`);
+  });
+
+  it('renders a closed Dialog as nothing and keepMounted as a closed element', () => {
+    const closed = renderToString(
+      <Dialog open={false} onClose={() => {}} title="Hidden">
+        content
+      </Dialog>,
+    );
+    expect(closed).toBe('');
+
+    const kept = renderToString(
+      <Dialog open={false} keepMounted onClose={() => {}} title="Kept" description="About">
+        content
+      </Dialog>,
+    );
+    expect(kept).toContain('<dialog');
+    expect(kept).not.toContain(' open=');
+    const labelledby = /aria-labelledby="([^"]+)"/.exec(kept)?.[1];
+    expect(labelledby).toBeTruthy();
+    expect(kept).toContain(`id="${labelledby}"`);
   });
 });

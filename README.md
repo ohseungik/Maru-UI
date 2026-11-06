@@ -100,7 +100,7 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 | Checkbox       |  ✅  |      ✅       |     ✅      | 직접 구현                   |
 | Switch         |  ✅  |      ✅       |     ✅      | 직접 구현                   |
 | Tabs           |  ✅  |      ✅       |     ✅      | 직접 구현 (roving tabindex) |
-| Dialog         |  ☐   |       ☐       |      ☐      | headless 라이브러리 래핑    |
+| Dialog         |  ✅  |      ✅       |     ✅      | 네이티브 `<dialog>` 기반    |
 | Select         |  ☐   |       ☐       |      ☐      | headless 라이브러리 래핑    |
 | Tooltip        |  ☐   |       ☐       |      ☐      |                             |
 | Popover        |  ☐   |       ☐       |      ☐      |                             |
@@ -110,10 +110,10 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 
 ## 직접 구현 vs 라이브러리 활용
 
-| 구분      | 컴포넌트                          | 이유                                                                            |
-| --------- | --------------------------------- | ------------------------------------------------------------------------------- |
-| 직접 구현 | Button, Checkbox, Switch, Tabs 등 | 접근성 패턴이 명확하고, 설계 의도를 코드로 보여주기 좋음                        |
-| 래핑      | Select, Dialog, Popover 등        | 포커스 트랩, 포지셔닝, 스크린리더 호환 등 엣지 케이스가 많아 검증된 구현을 사용 |
+| 구분      | 컴포넌트                                  | 이유                                                                                        |
+| --------- | ----------------------------------------- | ------------------------------------------------------------------------------------------- |
+| 직접 구현 | Button, Checkbox, Switch, Tabs, Dialog 등 | 접근성 패턴이 명확하거나, 네이티브 요소(`<input>`, `<dialog>`)가 이미 해결해 주는 부분이 큼 |
+| 래핑      | Select, Popover, Tooltip 등               | 포지셔닝, 충돌 감지, 스크린리더 호환 등 엣지 케이스가 많아 검증된 구현을 사용               |
 
 ## 품질 관리
 
@@ -181,7 +181,8 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 - [x] Input/Field
 - [x] Checkbox, Switch
 - [x] Tabs
-- [ ] Dialog, Select, Tooltip
+- [x] Dialog
+- [ ] Select, Tooltip
 - [ ] 컴포넌트별 키보드·axe 테스트
 - [ ] 다크모드 토글 스토리 보강
 

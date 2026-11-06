@@ -6,3 +6,22 @@ import { afterEach } from 'vitest';
 afterEach(() => {
   cleanup();
 });
+
+// jsdom implements <dialog>'s `open` attribute but not showModal() / close().
+// This stand-in mirrors the parts of the spec the tests rely on: showModal() opens, and
+// close() closes and fires `close` asynchronously (a queued task, as in browsers).
+// It has no focus trap, inert background or top layer; those are covered in a real browser.
+if (typeof HTMLDialogElement !== 'undefined') {
+  HTMLDialogElement.prototype.showModal = function showModal(this: HTMLDialogElement) {
+    if (this.open) {
+      throw new DOMException('The dialog is already open.', 'InvalidStateError');
+    }
+    this.setAttribute('open', '');
+  };
+
+  HTMLDialogElement.prototype.close = function close(this: HTMLDialogElement) {
+    if (!this.open) return;
+    this.removeAttribute('open');
+    setTimeout(() => this.dispatchEvent(new Event('close')), 0);
+  };
+}

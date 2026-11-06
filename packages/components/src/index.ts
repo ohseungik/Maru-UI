@@ -5,6 +5,9 @@ export type { ButtonProps, ButtonSize, ButtonVariant } from './components/Button
 export { Checkbox } from './components/Checkbox';
 export type { CheckboxProps, CheckboxSize } from './components/Checkbox';
 
+export { Dialog } from './components/Dialog';
+export type { DialogProps, DialogSize } from './components/Dialog';
+
 export { Field } from './components/Field';
 export type { FieldProps } from './components/Field';
 
