@@ -1,0 +1,114 @@
+/*
+ * Component tokens (--select-*) mirror Input, so the two line up in a form.
+ * The wrapper only positions the chevron; the native <select> does the rest.
+ */
+.wrapper {
+  --select-height: 2.5rem;
+  --select-padding-x: var(--maru-space-3);
+  --select-font-size: var(--maru-font-size-md);
+  --select-border: var(--maru-color-border-strong);
+
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.wrapper[data-size='sm'] {
+  --select-height: 2rem;
+  --select-padding-x: var(--maru-space-2);
+  --select-font-size: var(--maru-font-size-sm);
+}
+
+.wrapper[data-size='lg'] {
+  --select-height: 3rem;
+  --select-padding-x: var(--maru-space-4);
+  --select-font-size: var(--maru-font-size-lg);
+}
+
+.root {
+  appearance: none;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: var(--select-height);
+  padding-block: 0;
+  padding-inline-start: var(--select-padding-x);
+  /* Room for the chevron. */
+  padding-inline-end: calc(var(--select-padding-x) + 1.5rem);
+  border: 1px solid var(--select-border);
+  border-radius: var(--maru-radius-md);
+  background: var(--maru-color-bg-default);
+  color: var(--maru-color-text-default);
+  font: inherit;
+  font-size: var(--select-font-size);
+  line-height: var(--maru-font-line-height-tight);
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: border-color var(--maru-motion-duration-fast) var(--maru-motion-easing-standard);
+}
+
+/* The open list is drawn by the browser; keep it readable in dark mode. */
+.root option,
+.root optgroup {
+  background: var(--maru-color-bg-default);
+  color: var(--maru-color-text-default);
+}
+
+/* While the empty placeholder option is selected, look like an input's placeholder. */
+.root:has(option[value='']:checked) {
+  color: var(--maru-color-text-muted);
+}
+
+.root:not(:disabled):hover {
+  --select-border: var(--maru-color-text-default);
+}
+
+/* Same specificity as :hover and listed after it, so invalid wins over hover. */
+.root[data-invalid],
+.root[data-invalid]:not(:disabled):hover {
+  --select-border: var(--maru-color-text-danger);
+}
+
+.root:focus-visible {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+.root:disabled {
+  background: var(--maru-color-bg-subtle);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chevron {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: var(--select-padding-x);
+  width: 1rem;
+  height: 100%;
+  color: var(--maru-color-text-muted);
+  pointer-events: none;
+}
+
+.wrapper[data-disabled] .chevron {
+  opacity: 0.5;
+}
+
+/* Windows High Contrast: keep a system-colored edge and arrow. */
+@media (forced-colors: active) {
+  .root {
+    border-color: FieldText;
+  }
+
+  .root:disabled {
+    border-color: GrayText;
+  }
+
+  .chevron {
+    color: FieldText;
+  }
+
+  .wrapper[data-disabled] .chevron {
+    color: GrayText;
+  }
+}

@@ -16,6 +16,8 @@ export type { HeadingLevel, HeadingProps, HeadingSize, HeadingTone } from './com
 
 export { Input } from './components/Input';
 export type { InputProps, InputSize } from './components/Input';
+export { Select } from './components/Select';
+export type { SelectProps, SelectSize } from './components/Select';
 
 export { Stack } from './components/Stack';
 export type { StackElement, StackGap, StackProps } from './components/Stack';

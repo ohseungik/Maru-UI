@@ -7,6 +7,7 @@ import {
   Field,
   Heading,
   Input,
+  Select,
   Stack,
   Switch,
   Tab,
@@ -108,5 +109,22 @@ describe('server rendering', () => {
     const labelledby = /aria-labelledby="([^"]+)"/.exec(kept)?.[1];
     expect(labelledby).toBeTruthy();
     expect(kept).toContain(`id="${labelledby}"`);
+  });
+
+  it('renders Select inside a Field with matching ids and the placeholder selected', () => {
+    const html = renderToString(
+      <Field label="City" error="Required">
+        <Select placeholder="Choose">
+          <option value="seoul">Seoul</option>
+        </Select>
+      </Field>,
+    );
+    const forId = /for="([^"]+)"/.exec(html)?.[1];
+    expect(forId).toBeTruthy();
+    expect(html).toContain(`id="${forId}"`);
+    expect(html).toContain('<select');
+    expect(html).toContain('aria-invalid="true"');
+    // The placeholder option is the selected one on first render.
+    expect(html).toMatch(/<option value="" disabled[^>]*selected|<option value=""[^>]*selected/);
   });
 });
