@@ -15,6 +15,7 @@ import {
   TabPanel,
   Tabs,
   Text,
+  Tooltip,
 } from './index';
 
 describe('server rendering', () => {
@@ -126,5 +127,18 @@ describe('server rendering', () => {
     expect(html).toContain('aria-invalid="true"');
     // The placeholder option is the selected one on first render.
     expect(html).toMatch(/<option value="" disabled[^>]*selected|<option value=""[^>]*selected/);
+  });
+
+  it('renders a Tooltip closed, linked to its trigger', () => {
+    const html = renderToString(
+      <Tooltip content="Save changes">
+        <button type="button">Save</button>
+      </Tooltip>,
+    );
+    const describedBy = /aria-describedby="([^"]+)"/.exec(html)?.[1];
+    expect(describedBy).toBeTruthy();
+    expect(html).toContain(`id="${describedBy}"`);
+    expect(html).toContain('role="tooltip"');
+    expect(html).not.toContain('data-open');
   });
 });

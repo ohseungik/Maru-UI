@@ -25,3 +25,18 @@ if (typeof HTMLDialogElement !== 'undefined') {
     setTimeout(() => this.dispatchEvent(new Event('close')), 0);
   };
 }
+
+// jsdom has no Popover API either. These stand-ins only record the state, so tests can see
+// that showPopover() / hidePopover() were called; top layer and light dismiss are not modeled.
+// Typed as Partial so the check is not narrowed away: newer lib.dom versions already declare both.
+const elementPrototype: Partial<HTMLElement> | undefined =
+  typeof HTMLElement === 'undefined' ? undefined : HTMLElement.prototype;
+
+if (elementPrototype && typeof elementPrototype.showPopover !== 'function') {
+  elementPrototype.showPopover = function showPopover(this: HTMLElement) {
+    this.setAttribute('data-popover-showing', '');
+  };
+  elementPrototype.hidePopover = function hidePopover(this: HTMLElement) {
+    this.removeAttribute('data-popover-showing');
+  };
+}

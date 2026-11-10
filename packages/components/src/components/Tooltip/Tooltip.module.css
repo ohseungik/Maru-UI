@@ -1,0 +1,48 @@
+/*
+ * The element is a manual popover, so the browser puts it in the top layer. The UA
+ * stylesheet gives popovers a border, padding, inset and margin; they are all reset here.
+ * Position (left/top) is set from script because it depends on the trigger.
+ */
+.root {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  box-sizing: border-box;
+  display: none;
+  max-width: min(20rem, calc(100vw - 2 * var(--maru-space-2)));
+  padding: var(--maru-space-1) var(--maru-space-2);
+  border: 0;
+  border-radius: var(--maru-radius-md);
+  /* Inverted colors keep it readable on any surface in light and dark. */
+  background: var(--maru-color-text-default);
+  color: var(--maru-color-bg-default);
+  font-size: var(--maru-font-size-sm);
+  line-height: var(--maru-font-line-height-normal);
+  overflow: visible;
+  overflow-wrap: anywhere;
+  pointer-events: auto;
+}
+
+.root[data-open] {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .root[data-open] {
+    animation: tooltip-in 120ms var(--maru-motion-easing-standard);
+  }
+}
+
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (forced-colors: active) {
+  .root {
+    border: 1px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+}
