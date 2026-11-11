@@ -12,6 +12,13 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ['react', 'react/jsx-runtime'],
+      output: {
+        // Next.js (App Router) needs this to treat the library as client code, so its hooks and
+        // event handlers can be imported from a Server Component. Bundlers drop module-level
+        // directives from source files, so it is added to the finished bundle instead.
+        // `scripts/verify-build.mjs` checks that it is still there. See ADR-004.
+        banner: '"use client";',
+      },
     },
     sourcemap: true,
     emptyOutDir: true,

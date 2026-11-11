@@ -38,7 +38,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "vite build && tsc -p tsconfig.build.json",
+    "build": "vite build && tsc -p tsconfig.build.json && node scripts/verify-build.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },

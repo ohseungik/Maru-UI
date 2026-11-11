@@ -72,6 +72,8 @@ export function App() {
 
 다크모드는 기본적으로 OS 설정을 따르고, 루트 요소의 `data-theme="light | dark"` 속성으로 고정할 수 있습니다.
 
+Next.js App Router의 Server Component에서도 import 할 수 있도록 빌드 결과물에 `"use client"`를 넣어 두었습니다. 실제 Next.js 앱에서의 검증은 데모 앱 단계에서 진행합니다.
+
 ## 토큰 구조
 
 ```
@@ -110,6 +112,8 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 
 ## 직접 구현 vs 라이브러리 활용
 
+컴포넌트마다 같은 순서로 따져 보는 기준은 [ADR-003](./docs/adr/003-build-vs-wrap.md)에 있습니다.
+
 | 구분      | 컴포넌트                                                   | 이유                                                                                        |
 | --------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | 직접 구현 | Button, Checkbox, Switch, Tabs, Dialog, Select, Tooltip 등 | 접근성 패턴이 명확하거나, 네이티브 요소(`<input>`, `<dialog>`)가 이미 해결해 주는 부분이 큼 |
@@ -121,7 +125,7 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 - **단위/인터랙션 테스트**: Vitest + Testing Library. 키보드 조작, 비활성·로딩 상태, 폼 연동을 검증합니다.
 - **접근성**: axe-core 자동 검사, `eslint-plugin-jsx-a11y`, Storybook a11y 패널
 - **색상 대비**: 토큰 테스트가 라이트·다크 양쪽에서 텍스트 4.5:1, 포커스 링·컨트롤 테두리 3:1(WCAG AA)을 검증합니다. jsdom은 대비를 계산할 수 없어서 컴포넌트 테스트에서는 이 규칙을 끄고 토큰 단계에서 보장합니다.
-- **SSR**: 브라우저 API를 쓰지 않고, id가 필요한 `Field`는 `useId`로 서버와 클라이언트의 id를 일치시킵니다. `renderToString` 렌더링 테스트가 있습니다.
+- **SSR**: 렌더 중에는 브라우저 API를 쓰지 않고, id는 `useId`로만 만듭니다. 빌드 결과물에 `"use client"`를 넣고 빌드 단계에서 검사합니다. `renderToString` 렌더링 테스트가 있습니다. ([ADR-004](./docs/adr/004-ssr-strategy.md))
 - **계획**: Playwright 시각 회귀 테스트, 번들 크기 리포트
 
 ## CI/CD (GitHub Actions)
@@ -205,8 +209,8 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 | --- | ---------------------------------------------------------------------------------------- | ------ |
 | 001 | [토큰 3단 구조](./docs/adr/001-token-architecture.md)                                    | 채택됨 |
 | 002 | [CSS Modules + `data-*` variant 방식](./docs/adr/002-css-modules-and-data-attributes.md) | 채택됨 |
-| 003 | 직접 구현 vs headless 래핑 기준                                                          | 예정   |
-| 004 | SSR 호환 전략 (`"use client"`, id 생성)                                                  | 예정   |
+| 003 | [직접 구현 vs headless 래핑 기준](./docs/adr/003-build-vs-wrap.md)                       | 채택됨 |
+| 004 | [SSR 호환 전략 (`"use client"`, id 생성)](./docs/adr/004-ssr-strategy.md)                | 채택됨 |
 
 ## 개발 방식에 대한 메모
 
