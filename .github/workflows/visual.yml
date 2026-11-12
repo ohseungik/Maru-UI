@@ -1,0 +1,66 @@
+name: Visual regression
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: visual-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  visual:
+    name: Compare screenshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      # pnpm version comes from "packageManager" in package.json
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Until the baselines exist there is nothing to compare, so do not fail the pull request.
+      - name: Look for baselines
+        id: baselines
+        run: |
+          if ls apps/docs/visual/*-snapshots/*.png >/dev/null 2>&1; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No visual baselines yet. Run the 'Update visual baselines' workflow once."
+          fi
+
+      - name: Build Storybook
+        if: steps.baselines.outputs.found == 'true'
+        run: pnpm exec turbo run build --filter=@ohseungik/maru-docs
+
+      - name: Install the browser
+        if: steps.baselines.outputs.found == 'true'
+        run: pnpm --filter @ohseungik/maru-docs exec playwright install --with-deps chromium
+
+      - name: Compare screenshots
+        if: steps.baselines.outputs.found == 'true'
+        run: pnpm --filter @ohseungik/maru-docs test:visual
+
+      # The report shows the expected, actual and diff image for every failure.
+      - name: Upload the report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-report
+          path: |
+            apps/docs/playwright-report
+            apps/docs/test-results
+          retention-days: 7

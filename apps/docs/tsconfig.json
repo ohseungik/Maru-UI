@@ -6,5 +6,5 @@
       "@ohseungik/maru-ui": ["../../packages/components/src/index.ts"]
     }
   },
-  "include": [".storybook", "stories"]
+  "include": [".storybook", "stories", "visual"]
 }

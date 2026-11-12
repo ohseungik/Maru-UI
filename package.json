@@ -13,6 +13,7 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
+    "test:visual": "pnpm --filter @ohseungik/maru-docs test:visual",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
