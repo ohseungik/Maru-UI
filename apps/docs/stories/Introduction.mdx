@@ -44,16 +44,18 @@ export function Example() {
 <html data-theme="dark"></html>
 ```
 
-이 문서 상단 툴바의 **Theme** 메뉴로 두 테마를 전환해 볼 수 있습니다.
+이 문서 상단 툴바의 **Theme** 메뉴로 두 테마를 전환해 볼 수 있습니다. 폼 만들기와 Next.js 설정까지 포함한 안내는 [시작하기](?path=/docs/getting-started--docs)에 있습니다.
 
 ## 설계 원칙
 
-- **접근성이 기본값입니다.** 키보드 조작, 포커스 표시, 대비율을 컴포넌트와 토큰 단계에서 테스트합니다.
+- **접근성이 기본값입니다.** 키보드 조작, 포커스 표시, 대비율을 컴포넌트와 토큰 단계에서 테스트합니다. ([접근성 원칙](?path=/docs/accessibility--docs))
 - **런타임 비용이 없습니다.** CSS 변수와 CSS Modules만 사용하며, 스타일을 만드는 JS가 번들에 들어가지 않습니다.
 - **토큰은 3단 구조입니다.** Palette, Scale, Semantic으로 나누고, 테마는 Semantic 단계에서만 바꿉니다.
 - **판단 근거를 기록합니다.** 주요 결정은 저장소의 `docs/adr` 폴더에 남깁니다.
 
 ## 둘러보기
 
+- [시작하기](?path=/docs/getting-started--docs): 설치, 스타일, 폼, 테마, Next.js
+- [접근성 원칙](?path=/docs/accessibility--docs): 키보드, 포커스, 대비, 검증 방식과 한계
 - **Foundations / Tokens**: 색상, 간격, 타이포그래피 토큰
 - **Components**: Button, Text, Heading, Stack, Field, Input, Checkbox, Switch, Tabs, Dialog, Select, Tooltip. 스토리 화면 하단의 Accessibility 패널에서 axe 검사 결과를 볼 수 있습니다.

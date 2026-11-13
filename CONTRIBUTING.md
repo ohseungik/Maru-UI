@@ -20,6 +20,7 @@ pnpm format:check   # 실패하면 pnpm format
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm size           # 번들 크기 예산 확인 (build 후)
 ```
 
 ## 커밋 메시지
@@ -46,6 +47,14 @@ ci: cache Playwright browsers
 5. `apps/docs/stories/<Name>.stories.tsx`에 스토리를 추가하고, 컴포넌트 설명에 **왜 이런 API인지**를 한두 문장으로 적습니다.
 6. 사용자에게 영향이 있는 변경이면 `pnpm changeset`을 실행합니다.
 7. 설계상 선택지가 있었다면 `docs/adr`에 기록합니다.
+
+## 번들 크기
+
+소비자가 내려받는 파일(`index.js`, `styles.css`, `tokens.css`)에는 gzip 기준 **예산**이 있습니다. `pnpm size`가 크기를 표로 보여 주고, 예산을 넘으면 실패합니다. CI에서도 같은 검사를 하고, 결과 표는 Actions 실행 요약에 남습니다.
+
+- 예산은 [`scripts/size-report.mjs`](./scripts/size-report.mjs)의 `BUDGETS`에 있습니다.
+- 예산을 넘었다면 먼저 불필요한 의존성이나 중복 CSS가 없는지 확인하세요.
+- 꼭 필요한 증가라면 같은 PR에서 예산을 올리고, PR 설명에 이유를 적어 주세요.
 
 ## 릴리스
 

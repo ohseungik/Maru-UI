@@ -45,3 +45,7 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      # Fails when a file grows past its gzip budget (see scripts/size-report.mjs)
+      - name: Bundle size
+        run: pnpm size

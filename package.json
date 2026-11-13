@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "turbo run dev --filter=@ohseungik/maru-docs",
     "build": "turbo run build",
+    "size": "node scripts/size-report.mjs",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "test:visual": "pnpm --filter @ohseungik/maru-docs test:visual",
