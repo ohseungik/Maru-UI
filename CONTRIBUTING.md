@@ -21,6 +21,7 @@ pnpm typecheck
 pnpm test
 pnpm build
 pnpm size           # 번들 크기 예산 확인 (build 후)
+pnpm verify:pack    # npm 발행물 내용 검사 (build 후)
 ```
 
 ## 커밋 메시지
@@ -64,8 +65,6 @@ ci: cache Playwright browsers
 2. `main`에 병합되면 릴리스 워크플로가 "version packages" PR을 엽니다.
 3. 그 PR을 병합하면 npm에 발행됩니다.
 
-릴리스 워크플로는 기본적으로 꺼져 있습니다. 켜려면 아래를 설정하세요.
+`@ohseungik/maru-tokens`와 `@ohseungik/maru-ui`는 항상 같은 버전으로 발행됩니다. `1.0` 이전에는 호환성이 깨지는 변경을 `minor`, 그 외를 `patch`로 올립니다.
 
-- 저장소 Secret `NPM_TOKEN` (npm automation 토큰)
-- 저장소 Variable `NPM_RELEASE_ENABLED` = `true`
-- Settings → Actions → General에서 "Allow GitHub Actions to create and approve pull requests" 허용
+릴리스 워크플로는 기본적으로 꺼져 있습니다. npm 토큰 준비, GitHub 설정, 첫 릴리스 순서와 문제 해결은 [docs/releasing.md](./docs/releasing.md)에 정리했습니다.

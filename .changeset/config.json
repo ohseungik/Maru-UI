@@ -2,10 +2,10 @@
   "$schema": "https://unpkg.com/@changesets/config/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [],
+  "fixed": [["@ohseungik/maru-tokens", "@ohseungik/maru-ui"]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": ["@ohseungik/maru-docs"]
 }

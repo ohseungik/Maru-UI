@@ -12,6 +12,7 @@
     "dev": "turbo run dev --filter=@ohseungik/maru-docs",
     "build": "turbo run build",
     "size": "node scripts/size-report.mjs",
+    "verify:pack": "node scripts/verify-pack.mjs",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "test:visual": "pnpm --filter @ohseungik/maru-docs test:visual",
@@ -19,7 +20,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "changeset": "changeset",
-    "release": "turbo run build --filter=./packages/* && changeset publish"
+    "release": "turbo run build --filter=./packages/* && node scripts/verify-pack.mjs && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.0",

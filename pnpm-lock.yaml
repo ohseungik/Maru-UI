@@ -90,6 +90,9 @@ importers:
 
   packages/components:
     devDependencies:
+      '@ohseungik/maru-tokens':
+        specifier: workspace:*
+        version: link:../tokens
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.2

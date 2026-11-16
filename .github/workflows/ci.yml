@@ -49,3 +49,7 @@ jobs:
       # Fails when a file grows past its gzip budget (see scripts/size-report.mjs)
       - name: Bundle size
         run: pnpm size
+
+      # Checks what would be published to npm (files, exports, size)
+      - name: Package contents
+        run: pnpm verify:pack
