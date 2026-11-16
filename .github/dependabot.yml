@@ -29,3 +29,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    ignore:
+      # changesets/action v2 needs @changesets/cli v3 and renames its inputs.
+      # Upgrade both together, by hand.
+      - dependency-name: 'changesets/action'
+        update-types: ['version-update:semver-major']
