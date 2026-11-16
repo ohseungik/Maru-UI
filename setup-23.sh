@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-trap 'rm -f .patch-22.mjs' EXIT
-cat > .patch-22.mjs <<'EOF'
+trap 'rm -f .patch-23.mjs' EXIT
+cat > .patch-23.mjs <<'EOF'
 import { readFileSync, writeFileSync } from 'node:fs';
 
 function patch(file, edits) {
@@ -26,11 +26,9 @@ function patch(file, edits) {
   writeFileSync(file, text);
 }
 
-patch(".github/workflows/release.yml", [["uses: changesets/action@v2", "uses: changesets/action@v1"]]);
-
-patch(".github/dependabot.yml", [["  - package-ecosystem: github-actions\n    directory: /\n    schedule:\n      interval: weekly\n", "  - package-ecosystem: github-actions\n    directory: /\n    schedule:\n      interval: weekly\n    ignore:\n      # changesets/action v2 needs @changesets/cli v3 and renames its inputs.\n      # Upgrade both together, by hand.\n      - dependency-name: 'changesets/action'\n        update-types: ['version-update:semver-major']\n"]]);
+patch(".github/dependabot.yml", [["    groups:\n      # Minor and patch updates share one PR.", "    groups:\n      # Tools that must move together get one PR each, majors included.\n      # A group is matched in order, so these come before the catch-all below.\n      storybook:\n        patterns:\n          - 'storybook'\n          - '@storybook/*'\n      eslint:\n        patterns:\n          - 'eslint'\n          - '@eslint/js'\n      vitest:\n        patterns:\n          - 'vitest'\n          - '@vitest/*'\n      # Minor and patch updates share one PR."]]);
 
 EOF
-node .patch-22.mjs
+node .patch-23.mjs
 
-echo "22번 적용 완료. 커밋하고 push하세요."
+echo "23번 적용 완료. 커밋하고 push하세요."

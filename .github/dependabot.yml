@@ -7,6 +7,20 @@ updates:
       interval: weekly
     open-pull-requests-limit: 5
     groups:
+      # Tools that must move together get one PR each, majors included.
+      # A group is matched in order, so these come before the catch-all below.
+      storybook:
+        patterns:
+          - 'storybook'
+          - '@storybook/*'
+      eslint:
+        patterns:
+          - 'eslint'
+          - '@eslint/js'
+      vitest:
+        patterns:
+          - 'vitest'
+          - '@vitest/*'
       # Minor and patch updates share one PR. Major updates arrive one at a time,
       # so each can be reviewed and tested on its own.
       dev-dependencies:
