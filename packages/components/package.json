@@ -1,6 +1,6 @@
 {
   "name": "@ohseungik/maru-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Accessible React components for Maru UI.",
   "license": "MIT",
   "type": "module",
