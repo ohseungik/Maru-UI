@@ -7,10 +7,7 @@
 
 [![CI](https://github.com/ohseungik/Maru-UI/actions/workflows/ci.yml/badge.svg)](https://github.com/ohseungik/Maru-UI/actions/workflows/ci.yml)
 [![license](https://img.shields.io/github/license/ohseungik/Maru-UI)](./LICENSE)
-
-<!-- 첫 npm 릴리스 후 아래 배지의 주석을 해제하세요.
 [![npm](https://img.shields.io/npm/v/@ohseungik/maru-ui)](https://www.npmjs.com/package/@ohseungik/maru-ui)
--->
 
 **[📖 문서 / Storybook 보기](https://ohseungik.github.io/Maru-UI/)**
 
@@ -177,7 +174,7 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 - [x] GitHub Actions CI (lint → 포맷 → typecheck → test → build)
 - [x] Button, Text/Heading, Stack
 - [x] Storybook + GitHub Pages 배포 워크플로
-- [ ] GitHub Pages 첫 배포 확인
+- [x] GitHub Pages 첫 배포 확인
 - [x] ADR 001~002
 
 ### 2주차: 인터랙션과 접근성
@@ -196,7 +193,7 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 - [ ] Popover, Toast, Table, Skeleton
 - [ ] Playwright 시각 회귀
 - [ ] 번들 크기 리포트
-- [ ] changesets 첫 릴리스 `0.1.0` + npm 발행
+- [x] changesets 첫 릴리스 `0.1.0` + npm 발행
 - [ ] 문서 사이트 마무리 (시작하기, 접근성 원칙)
 
 ### 이후

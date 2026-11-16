@@ -7,8 +7,23 @@ updates:
       interval: weekly
     open-pull-requests-limit: 5
     groups:
+      # Minor and patch updates share one PR. Major updates arrive one at a time,
+      # so each can be reviewed and tested on its own.
       dev-dependencies:
         dependency-type: development
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # typescript-eslint does not support TS 7 yet. Revisit when it does.
+      - dependency-name: 'typescript'
+        update-types: ['version-update:semver-major']
+      # The visual baselines are rendered with this exact version. Bump it by hand, together
+      # with new baselines (see docs/visual-regression.md).
+      - dependency-name: '@playwright/test'
+      # Type definitions should match the Node version in .nvmrc, not the newest one.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
 
   - package-ecosystem: github-actions
     directory: /
