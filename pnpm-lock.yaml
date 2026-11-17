@@ -61,8 +61,8 @@ importers:
         specifier: 1.56.0
         version: 1.56.0
       '@storybook/addon-a11y':
-        specifier: ^9.1.0
-        version: 9.1.21(storybook@9.1.21(@testing-library/dom@10.4.2)(prettier@3.10.1)(vite@7.3.7(@types/node@22.20.5)))
+        specifier: ^10.6.7
+        version: 10.6.7(storybook@9.1.21(@testing-library/dom@10.4.2)(prettier@3.10.1)(vite@7.3.7(@types/node@22.20.5)))
       '@storybook/addon-docs':
         specifier: ^9.1.0
         version: 9.1.21(@types/react@19.3.0)(storybook@9.1.21(@testing-library/dom@10.4.2)(prettier@3.10.1)(vite@7.3.7(@types/node@22.20.5)))
@@ -896,10 +896,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@storybook/addon-a11y@9.1.21':
-    resolution: {integrity: sha512-g0y7B5NWVpPn4aJiDBW7P3GEslIsRQ6HEGuoiPleUjJqCykYTMBMeH6fO5/gjiMjMHcDgWPdgmHbIoHnOE5lEQ==}
+  '@storybook/addon-a11y@10.6.7':
+    resolution: {integrity: sha512-ARd+bjfOYoICe00+svRgFsCVqV7RbN+wgi8yfRhk31kESR7NnTMBGiZD8vWv/r3xqul/Ddr1uR6mUK4lpH7sqw==}
     peerDependencies:
-      storybook: ^9.1.21
+      storybook: ^10.6.7
 
   '@storybook/addon-docs@9.1.21':
     resolution: {integrity: sha512-wF7dVHS6nYlIyFG+22EKXhWi/fIFHqAlGLC2ge6WlpiFJv1Nd2ibUZSaNeciWij+ZSkwR0RFoQl+zAOVeacGJA==}
@@ -3523,7 +3523,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.64.12':
     optional: true
 
-  '@storybook/addon-a11y@9.1.21(storybook@9.1.21(@testing-library/dom@10.4.2)(prettier@3.10.1)(vite@7.3.7(@types/node@22.20.5)))':
+  '@storybook/addon-a11y@10.6.7(storybook@9.1.21(@testing-library/dom@10.4.2)(prettier@3.10.1)(vite@7.3.7(@types/node@22.20.5)))':
     dependencies:
       '@storybook/global': 5.0.0
       axe-core: 4.14.0
