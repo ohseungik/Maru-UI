@@ -1,12 +1,12 @@
-import { dirname } from "node:path";
+import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(ts|tsx)'],
-  addons: [getAbsolutePath("@storybook/addon-a11y"), getAbsolutePath("@storybook/addon-docs")],
-  framework: getAbsolutePath("@storybook/react-vite"),
+  addons: [getAbsolutePath('@storybook/addon-a11y'), getAbsolutePath('@storybook/addon-docs')],
+  framework: getAbsolutePath('@storybook/react-vite'),
 
   // Resolve the component library from source: instant HMR while developing and
   // no need to rebuild the package first. The tokens package is consumed through
