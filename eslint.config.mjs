@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from 'eslint-plugin-storybook';
+
 import js from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
@@ -17,10 +20,8 @@ export default defineConfig([
       'pnpm-lock.yaml',
     ],
   },
-
   js.configs.recommended,
   tseslint.configs.recommended,
-
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -32,22 +33,17 @@ export default defineConfig([
       'react-hooks/exhaustive-deps': 'warn',
       '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports' }],
     },
-  },
-
-  // Accessibility lint rules for JSX (components, stories)
+  }, // Accessibility lint rules for JSX (components, stories)
   {
     files: ['**/*.tsx'],
     ...jsxA11y.flatConfigs.recommended,
-  },
-
-  // Plain Node scripts and tests
+  }, // Plain Node scripts and tests
   {
     files: ['**/*.{js,mjs,cjs}', '**/*.config.{ts,mts}', '**/.storybook/main.ts'],
     languageOptions: {
       globals: { ...globals.node },
     },
-  },
-
-  // Must stay last: turns off rules that conflict with Prettier
+  }, // Must stay last: turns off rules that conflict with Prettier
   prettier,
+  ...storybook.configs['flat/recommended'],
 ]);
