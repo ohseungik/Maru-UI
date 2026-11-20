@@ -102,7 +102,7 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 | Dialog         |  ✅  |      ✅       |     ✅      | 네이티브 `<dialog>` 기반    |
 | Select         |  ✅  |      ✅       |     ✅      | 네이티브 `<select>` 기반    |
 | Tooltip        |  ✅  |      ✅       |     ✅      | 직접 구현 (Popover API)     |
-| Popover        |  ☐   |       ☐       |      ☐      |                             |
+| Popover        |  ✅  |      ✅       |     ✅      | 직접 구현 (Popover API)     |
 | Toast          |  ☐   |       ☐       |      ☐      |                             |
 | Table          |  ☐   |       ☐       |      ☐      | 기본형                      |
 | Skeleton       |  ☐   |       ☐       |      ☐      |                             |
@@ -111,10 +111,10 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 
 컴포넌트마다 같은 순서로 따져 보는 기준은 [ADR-003](./docs/adr/003-build-vs-wrap.md)에 있습니다.
 
-| 구분      | 컴포넌트                                                   | 이유                                                                                        |
-| --------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| 직접 구현 | Button, Checkbox, Switch, Tabs, Dialog, Select, Tooltip 등 | 접근성 패턴이 명확하거나, 네이티브 요소(`<input>`, `<dialog>`)가 이미 해결해 주는 부분이 큼 |
-| 래핑      | Popover, Combobox 등                                       | 포지셔닝, 충돌 감지, 스크린리더 호환 등 엣지 케이스가 많아 검증된 구현을 사용               |
+| 구분      | 컴포넌트                                                            | 이유                                                                                        |
+| --------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| 직접 구현 | Button, Checkbox, Switch, Tabs, Dialog, Select, Tooltip, Popover 등 | 접근성 패턴이 명확하거나, 네이티브 요소(`<input>`, `<dialog>`)가 이미 해결해 주는 부분이 큼 |
+| 래핑      | Combobox 등                                                         | 포지셔닝, 충돌 감지, 스크린리더 호환 등 엣지 케이스가 많아 검증된 구현을 사용               |
 
 ## 품질 관리
 
@@ -190,7 +190,8 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 
 ### 3주차: 릴리스
 
-- [ ] Popover, Toast, Table, Skeleton
+- [x] Popover
+- [ ] Toast, Table, Skeleton
 - [ ] Playwright 시각 회귀
 - [ ] 번들 크기 리포트
 - [x] changesets 첫 릴리스 `0.1.0` + npm 발행

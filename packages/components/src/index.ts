@@ -16,6 +16,10 @@ export type { HeadingLevel, HeadingProps, HeadingSize, HeadingTone } from './com
 
 export { Input } from './components/Input';
 export type { InputProps, InputSize } from './components/Input';
+
+export { Popover } from './components/Popover';
+export type { PopoverPlacement, PopoverProps } from './components/Popover';
+
 export { Select } from './components/Select';
 export type { SelectProps, SelectSize } from './components/Select';
 

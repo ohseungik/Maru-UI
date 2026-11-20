@@ -43,6 +43,14 @@ const scenarios: Scenario[] = [
     },
   },
   {
+    name: 'popover-open',
+    story: ['Components/Popover', 'Default'],
+    act: async (page) => {
+      await page.getByRole('button', { name: 'Share' }).click();
+      await expect(page.getByRole('textbox', { name: 'Link' })).toBeFocused();
+    },
+  },
+  {
     name: 'select-focus',
     story: ['Components/Select', 'With Placeholder'],
     act: async (page) => {

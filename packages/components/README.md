@@ -34,12 +34,12 @@ export function Example() {
 
 ## Components
 
-Button, Checkbox, Dialog, Field, Heading, Input, Select, Stack, Switch, Tabs, Text, Tooltip.
+Button, Checkbox, Dialog, Field, Heading, Input, Popover, Select, Stack, Switch, Tabs, Text, Tooltip.
 
 ## Requirements
 
 - React 18 or newer
-- A current browser. Dialog uses the native `<dialog>` element and Tooltip uses the Popover API (it degrades to a plain element without it).
+- A current browser. Dialog uses the native `<dialog>` element and Tooltip and Popover use the Popover API (it degrades to a plain element without it).
 - Works with Next.js App Router: the build starts with `"use client"`.
 
 ## Links

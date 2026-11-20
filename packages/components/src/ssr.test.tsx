@@ -7,6 +7,7 @@ import {
   Field,
   Heading,
   Input,
+  Popover,
   Select,
   Stack,
   Switch,
@@ -140,5 +141,22 @@ describe('server rendering', () => {
     expect(html).toContain(`id="${describedBy}"`);
     expect(html).toContain('role="tooltip"');
     expect(html).not.toContain('data-open');
+  });
+
+  it('renders a Popover closed, linked to its trigger', () => {
+    const html = renderToString(
+      <Popover title="Share" content={<button type="button">Copy</button>}>
+        <button type="button">Share</button>
+      </Popover>,
+    );
+    const controls = /aria-controls="([^"]+)"/.exec(html)?.[1];
+    expect(controls).toBeTruthy();
+    expect(html).toContain(`id="${controls}"`);
+    expect(html).toContain('aria-expanded="false"');
+    expect(html).toContain('role="dialog"');
+    expect(html).toContain('Share');
+    expect(html).not.toContain('data-open');
+    // The body is not rendered until the popover opens.
+    expect(html).not.toContain('Copy');
   });
 });

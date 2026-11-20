@@ -14,7 +14,7 @@ import {
   type ReactNode,
 } from 'react';
 import { cx } from '../../utils/cx';
-import { computePosition, type TooltipPlacement } from './position';
+import { computePosition, type Placement } from '../../utils/position';
 import styles from './Tooltip.module.css';
 
 // useLayoutEffect warns during server rendering in React 18; positioning only matters in the browser.
@@ -29,6 +29,8 @@ interface TriggerProps {
   onKeyDown?: KeyboardEventHandler<Element>;
   'aria-describedby'?: string;
 }
+
+export type TooltipPlacement = Placement;
 
 export interface TooltipProps {
   /** Short, plain text. A tooltip cannot contain anything interactive. */

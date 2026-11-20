@@ -1,0 +1,73 @@
+/*
+ * The element is a manual popover, so the browser puts it in the top layer. The UA
+ * stylesheet gives popovers a border, padding, inset and margin; they are all reset here.
+ * Position (left/top) is set from script because it depends on the trigger.
+ */
+.root {
+  --popover-padding: var(--maru-space-4);
+  /* Scrolling clips overflow on both axes, which would cut off focus rings. The body gets
+     padding for them and a negative margin so the content still lines up with the title. */
+  --popover-ring-room: calc(var(--maru-focus-ring-width) + var(--maru-focus-ring-offset));
+
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  box-sizing: border-box;
+  display: none;
+  flex-direction: column;
+  gap: var(--maru-space-3);
+  width: max-content;
+  min-width: 12rem;
+  max-width: min(24rem, calc(100vw - 2 * var(--maru-space-2)));
+  max-height: calc(100dvh - 2 * var(--maru-space-2));
+  padding: var(--popover-padding);
+  border: 1px solid var(--maru-color-border-default);
+  border-radius: var(--maru-radius-lg);
+  background: var(--maru-color-bg-default);
+  box-shadow: var(--maru-shadow-lg);
+  color: var(--maru-color-text-default);
+  font-size: var(--maru-font-size-md);
+  line-height: var(--maru-font-line-height-normal);
+  overflow: visible;
+}
+
+.root[data-open] {
+  display: flex;
+}
+
+/* The panel takes focus when it has no control to give it to; it needs no ring then. */
+.root:focus {
+  outline: none;
+}
+
+.title {
+  font-size: var(--maru-font-size-md);
+  font-weight: var(--maru-font-weight-semibold);
+}
+
+.body {
+  min-height: 0;
+  margin: calc(-1 * var(--popover-ring-room));
+  padding: var(--popover-ring-room);
+  overflow-y: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .root[data-open] {
+    animation: popover-in 120ms var(--maru-motion-easing-standard);
+  }
+}
+
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@media (forced-colors: active) {
+  .root {
+    border: 2px solid CanvasText;
+    box-shadow: none;
+  }
+}
