@@ -1,0 +1,92 @@
+.root {
+  --skeleton-base: var(--maru-color-bg-muted);
+  --skeleton-shine: color-mix(in srgb, var(--maru-color-bg-default) 65%, transparent);
+
+  display: block;
+  box-sizing: border-box;
+  width: var(--maru-skeleton-width, 100%);
+  overflow: hidden;
+  border-radius: var(--maru-radius-sm);
+  background-color: var(--skeleton-base);
+  background-image: linear-gradient(90deg, transparent, var(--skeleton-shine), transparent);
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+  background-position: -100% 0;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+/* ---- shape ---- */
+
+.root[data-variant='text'] {
+  /* One line of body text: the height follows the font, so swapping in real text does not shift the layout. */
+  height: 1lh;
+  font-size: var(--maru-font-size-md);
+  line-height: var(--maru-font-line-height-normal);
+  border-radius: var(--maru-radius-sm);
+}
+
+.root[data-variant='rect'] {
+  height: var(--maru-skeleton-height, 6rem);
+  border-radius: var(--maru-radius-md);
+}
+
+.root[data-variant='circle'] {
+  --maru-skeleton-width: 2.5rem;
+
+  width: var(--maru-skeleton-width);
+  height: var(--maru-skeleton-height, var(--maru-skeleton-width));
+  border-radius: var(--maru-radius-full);
+}
+
+/* ---- several lines of text ---- */
+
+.root[data-lines] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--maru-space-2);
+  height: auto;
+  background: none;
+  animation: none;
+}
+
+.root[data-lines] > span {
+  display: block;
+  box-sizing: border-box;
+  height: 1lh;
+  border-radius: var(--maru-radius-sm);
+  background-color: var(--skeleton-base);
+  background-image: linear-gradient(90deg, transparent, var(--skeleton-shine), transparent);
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+  background-position: -100% 0;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+.root[data-lines] > span:last-child {
+  width: 60%;
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* No motion: keep the grey shape and drop the sweep. */
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .root[data-lines] > span {
+    animation: none;
+    background-image: none;
+  }
+}
+
+/* Windows High Contrast: backgrounds are dropped, so draw the shape with an outline instead. */
+@media (forced-colors: active) {
+  .root:not([data-lines]),
+  .root[data-lines] > span {
+    border: 1px solid GrayText;
+    animation: none;
+    background-image: none;
+  }
+}

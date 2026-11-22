@@ -34,7 +34,7 @@ export function Example() {
 
 ## Components
 
-Button, Checkbox, Dialog, Field, Heading, Input, Popover, Select, Stack, Switch, Tabs, Text, Tooltip.
+Button, Checkbox, Dialog, Field, Heading, Input, Popover, Select, Skeleton, Stack, Switch, Tabs, Text, Tooltip.
 
 ## Requirements
 

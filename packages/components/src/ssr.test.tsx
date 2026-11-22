@@ -9,6 +9,7 @@ import {
   Input,
   Popover,
   Select,
+  Skeleton,
   Stack,
   Switch,
   Tab,
@@ -158,5 +159,12 @@ describe('server rendering', () => {
     expect(html).not.toContain('data-open');
     // The body is not rendered until the popover opens.
     expect(html).not.toContain('Copy');
+  });
+
+  it('renders a Skeleton hidden from assistive technology', () => {
+    const html = renderToString(<Skeleton lines={2} />);
+    expect(html).toContain('aria-hidden="true"');
+    expect(html).toContain('data-lines="2"');
+    expect(html.match(/<span/g)).toHaveLength(2);
   });
 });

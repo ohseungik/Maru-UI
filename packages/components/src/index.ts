@@ -23,6 +23,9 @@ export type { PopoverPlacement, PopoverProps } from './components/Popover';
 export { Select } from './components/Select';
 export type { SelectProps, SelectSize } from './components/Select';
 
+export { Skeleton } from './components/Skeleton';
+export type { SkeletonProps, SkeletonVariant } from './components/Skeleton';
+
 export { Stack } from './components/Stack';
 export type { StackElement, StackGap, StackProps } from './components/Stack';
 
