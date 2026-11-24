@@ -1,0 +1,148 @@
+.wrapper {
+  /* Scrolls sideways when the table is wider than the space it has. */
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.wrapper:focus-visible {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+.root {
+  --table-cell-y: var(--maru-space-3);
+  --table-cell-x: var(--maru-space-4);
+
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--maru-color-text-default);
+  font-family: inherit;
+  font-size: var(--maru-font-size-md);
+  line-height: var(--maru-font-line-height-normal);
+  text-align: start;
+}
+
+.root[data-size='sm'] {
+  --table-cell-y: var(--maru-space-2);
+  --table-cell-x: var(--maru-space-3);
+
+  font-size: var(--maru-font-size-sm);
+}
+
+/* ---- caption ---- */
+
+.caption {
+  padding: 0 var(--table-cell-x) var(--maru-space-3);
+  color: var(--maru-color-text-muted);
+  font-size: var(--maru-font-size-sm);
+  text-align: start;
+  caption-side: top;
+}
+
+.caption[data-hidden] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- header and cells ---- */
+
+.header,
+.cell {
+  padding: var(--table-cell-y) var(--table-cell-x);
+  border-bottom: 1px solid var(--maru-color-border-default);
+  text-align: start;
+  vertical-align: top;
+}
+
+.header {
+  background-color: var(--maru-color-bg-subtle);
+  font-weight: var(--maru-font-weight-semibold);
+  white-space: nowrap;
+}
+
+.header[data-numeric],
+.cell[data-numeric] {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+/* A row heading (scope="row") reads as a label, not as column chrome. */
+.body .header {
+  background-color: transparent;
+}
+
+.root[data-striped] .body .row:nth-child(even) {
+  background-color: var(--maru-color-bg-subtle);
+}
+
+.root[data-striped] .body .row:nth-child(even) .header {
+  background-color: transparent;
+}
+
+/* ---- sortable heading ---- */
+
+.sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--maru-space-2);
+  margin: calc(-1 * var(--maru-space-1)) calc(-1 * var(--maru-space-2));
+  padding: var(--maru-space-1) var(--maru-space-2);
+  border: 0;
+  border-radius: var(--maru-radius-sm);
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sort:hover {
+  background-color: var(--maru-color-bg-muted);
+}
+
+.sort:focus-visible {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+/* Sort arrows, cut out of a square so they follow the text color. */
+.sortIcon {
+  width: 0.7em;
+  height: 0.7em;
+  flex: none;
+  background-color: currentcolor;
+  opacity: 0.45;
+
+  /* Not sorted, but sortable: an up and a down arrow. */
+  clip-path: polygon(50% 0, 100% 40%, 0 40%, 50% 0, 0 60%, 100% 60%, 50% 100%, 0 60%);
+}
+
+.sort[data-sort='ascending'] .sortIcon {
+  opacity: 1;
+  clip-path: polygon(50% 10%, 100% 80%, 0 80%);
+}
+
+.sort[data-sort='descending'] .sortIcon {
+  opacity: 1;
+  clip-path: polygon(0 20%, 100% 20%, 50% 90%);
+}
+
+/* Windows High Contrast: draw the row lines in a system color so they stay visible. */
+@media (forced-colors: active) {
+  .header,
+  .cell {
+    border-bottom-color: CanvasText;
+  }
+
+  .sortIcon {
+    /* Backgrounds are dropped in forced colors; keep the arrow in a system color. */
+    forced-color-adjust: none;
+    background-color: ButtonText;
+    opacity: 1;
+  }
+}

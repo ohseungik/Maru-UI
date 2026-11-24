@@ -32,6 +32,18 @@ export type { StackElement, StackGap, StackProps } from './components/Stack';
 export { Switch } from './components/Switch';
 export type { SwitchProps, SwitchSize } from './components/Switch';
 
+export { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './components/Table';
+export type {
+  TableBodyProps,
+  TableCellProps,
+  TableHeadProps,
+  TableHeaderProps,
+  TableProps,
+  TableRowProps,
+  TableSize,
+  TableSort,
+} from './components/Table';
+
 export { Tab, TabList, TabPanel, Tabs } from './components/Tabs';
 export type {
   TabListProps,

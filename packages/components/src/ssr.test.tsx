@@ -15,6 +15,12 @@ import {
   Tab,
   TabList,
   TabPanel,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
   Tabs,
   Text,
   Tooltip,
@@ -166,5 +172,30 @@ describe('server rendering', () => {
     expect(html).toContain('aria-hidden="true"');
     expect(html).toContain('data-lines="2"');
     expect(html.match(/<span/g)).toHaveLength(2);
+  });
+
+  it('renders a Table with its caption and scoped headings', () => {
+    const html = renderToString(
+      <Table caption="Team">
+        <TableHead>
+          <TableRow>
+            <TableHeader sort="ascending" onSort={() => {}}>
+              Name
+            </TableHeader>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Ada</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(html).toContain('<caption');
+    expect(html).toContain('scope="col"');
+    expect(html).toContain('aria-sort="ascending"');
+    // The scroll wrapper is only a focusable region once the browser has measured an overflow.
+    expect(html).not.toContain('role="region"');
+    expect(html).not.toContain('tabindex');
   });
 });
