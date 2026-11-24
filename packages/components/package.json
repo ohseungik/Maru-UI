@@ -1,6 +1,6 @@
 {
   "name": "@ohseungik/maru-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Accessible React components for Maru UI.",
   "license": "MIT",
   "type": "module",
@@ -43,7 +43,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@ohseungik/maru-tokens": ">=0.1.1",
+    "@ohseungik/maru-tokens": ">=0.1.2",
     "react": ">=18"
   },
   "devDependencies": {

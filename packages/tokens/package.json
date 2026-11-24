@@ -1,6 +1,6 @@
 {
   "name": "@ohseungik/maru-tokens",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Design tokens for Maru UI: CSS variables (light/dark) and typed values.",
   "license": "MIT",
   "type": "module",
