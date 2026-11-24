@@ -1,0 +1,154 @@
+/*
+ * The viewport only stacks the toasts in a corner. It lets pointer events through, so the page
+ * behind the empty part of it stays clickable; each toast turns them back on.
+ */
+.viewport {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--maru-space-3);
+  box-sizing: border-box;
+  width: min(24rem, 100vw);
+  padding: var(--maru-space-4);
+  pointer-events: none;
+}
+
+.viewport[data-placement='bottom-end'] {
+  inset-block-end: 0;
+  inset-inline-end: 0;
+}
+
+.viewport[data-placement='bottom-start'] {
+  inset-block-end: 0;
+  inset-inline-start: 0;
+}
+
+.viewport[data-placement='top-end'] {
+  inset-block-start: 0;
+  inset-inline-end: 0;
+}
+
+.viewport[data-placement='top-start'] {
+  inset-block-start: 0;
+  inset-inline-start: 0;
+}
+
+/* Newest toast nearest the screen edge. */
+.viewport[data-placement^='top'] {
+  flex-direction: column-reverse;
+}
+
+/* The two live regions are layout-neutral wrappers. */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--maru-space-3);
+}
+
+.viewport[data-placement^='top'] .group {
+  flex-direction: column-reverse;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--maru-space-3);
+  padding: var(--maru-space-3) var(--maru-space-4);
+  border: 1px solid var(--maru-color-border-default);
+  border-radius: var(--maru-radius-lg);
+  background-color: var(--maru-color-bg-default);
+  box-shadow: var(--maru-shadow-lg);
+  color: var(--maru-color-text-default);
+  font-size: var(--maru-font-size-sm);
+  line-height: var(--maru-font-line-height-normal);
+  pointer-events: auto;
+  animation: toast-in 160ms ease-out;
+}
+
+.toast[data-tone='danger'] {
+  border-color: var(--maru-color-text-danger);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--maru-radius-full);
+  background-color: var(--maru-color-text-danger);
+  color: var(--maru-color-bg-default);
+  font-size: var(--maru-font-size-xs);
+  font-weight: var(--maru-font-weight-bold);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: var(--maru-font-weight-semibold);
+}
+
+.description {
+  margin-block-start: var(--maru-space-1);
+  color: var(--maru-color-text-muted);
+}
+
+.button {
+  flex: none;
+  padding: var(--maru-space-1) var(--maru-space-2);
+  border: 0;
+  border-radius: var(--maru-radius-sm);
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--maru-color-bg-muted);
+}
+
+.button:focus-visible {
+  outline: var(--maru-focus-ring-width) solid var(--maru-color-focus-ring);
+  outline-offset: var(--maru-focus-ring-offset);
+}
+
+.actionButton {
+  color: var(--maru-color-action-text);
+  font-weight: var(--maru-font-weight-semibold);
+}
+
+.close {
+  color: var(--maru-color-text-muted);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}
+
+/* Windows High Contrast: backgrounds are dropped, so keep the edge and the icon visible. */
+@media (forced-colors: active) {
+  .toast {
+    border-color: CanvasText;
+  }
+
+  .icon {
+    forced-color-adjust: none;
+    background-color: CanvasText;
+    color: Canvas;
+  }
+}

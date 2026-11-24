@@ -103,7 +103,7 @@ Scale: --maru-space-4, --maru-radius-md, --maru-font-size-md, --maru-motion-dura
 | Select         |  ✅  |      ✅       |     ✅      | 네이티브 `<select>` 기반    |
 | Tooltip        |  ✅  |      ✅       |     ✅      | 직접 구현 (Popover API)     |
 | Popover        |  ✅  |      ✅       |     ✅      | 직접 구현 (Popover API)     |
-| Toast          |  ☐   |       ☐       |      ☐      |                             |
+| Toast          |  ✅  |      ✅       |     ✅      | 라이브 리전, Provider + 훅  |
 | Table          |  ✅  |      ✅       |     ✅      | 네이티브 `<table>` 기반     |
 | Skeleton       |  ✅  |      ✅       |     ✅      | 장식용, aria-busy 패턴      |
 
@@ -193,7 +193,7 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 - [x] Popover
 - [x] Skeleton
 - [x] Table
-- [ ] Toast
+- [x] Toast
 - [ ] Playwright 시각 회귀
 - [ ] 번들 크기 리포트
 - [x] changesets 첫 릴리스 `0.1.0` + npm 발행

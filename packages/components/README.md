@@ -34,7 +34,7 @@ export function Example() {
 
 ## Components
 
-Button, Checkbox, Dialog, Field, Heading, Input, Popover, Select, Skeleton, Stack, Switch, Table (with TableHead, TableBody, TableRow, TableHeader and TableCell), Tabs, Text, Tooltip.
+Button, Checkbox, Dialog, Field, Heading, Input, Popover, Select, Skeleton, Stack, Switch, Table (with TableHead, TableBody, TableRow, TableHeader and TableCell), Tabs, Text, ToastProvider (with the `useToast` hook), Tooltip.
 
 ## Requirements
 

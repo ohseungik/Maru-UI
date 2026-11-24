@@ -23,6 +23,7 @@ import {
   TableRow,
   Tabs,
   Text,
+  ToastProvider,
   Tooltip,
 } from './index';
 
@@ -197,5 +198,17 @@ describe('server rendering', () => {
     // The scroll wrapper is only a focusable region once the browser has measured an overflow.
     expect(html).not.toContain('role="region"');
     expect(html).not.toContain('tabindex');
+  });
+
+  it('renders a ToastProvider with its live regions, empty', () => {
+    const html = renderToString(
+      <ToastProvider>
+        <p>App</p>
+      </ToastProvider>,
+    );
+    expect(html).toContain('<p>App</p>');
+    expect(html).toContain('role="status"');
+    expect(html).toContain('role="alert"');
+    expect(html).not.toContain('data-toast-id');
   });
 });

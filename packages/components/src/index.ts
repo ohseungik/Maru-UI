@@ -57,5 +57,15 @@ export type {
 export { Text } from './components/Text';
 export type { TextElement, TextProps, TextSize, TextTone, TextWeight } from './components/Text';
 
+export { ToastProvider, useToast } from './components/Toast';
+export type {
+  ToastAction,
+  ToastApi,
+  ToastOptions,
+  ToastPlacement,
+  ToastProviderProps,
+  ToastTone,
+} from './components/Toast';
+
 export { Tooltip } from './components/Tooltip';
 export type { TooltipPlacement, TooltipProps } from './components/Tooltip';

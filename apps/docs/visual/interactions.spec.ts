@@ -51,6 +51,14 @@ const scenarios: Scenario[] = [
     },
   },
   {
+    name: 'toast-open',
+    story: ['Components/Toast', 'Persistent'],
+    act: async (page) => {
+      await page.getByRole('button', { name: 'Show error' }).click();
+      await page.locator('[data-toast-id]').waitFor();
+    },
+  },
+  {
     name: 'select-focus',
     story: ['Components/Select', 'With Placeholder'],
     act: async (page) => {
