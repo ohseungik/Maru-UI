@@ -1,5 +1,14 @@
 # @ohseungik/maru-ui
 
+## 0.1.1
+
+### Patch Changes
+
+- 6999917: Add `Popover`: a non-modal panel of interactive content anchored to a button. Focus moves into it when it opens, Esc or a click outside closes it, and it is drawn in the top layer and flips when there is no room. Placement logic is now shared with `Tooltip`.
+- 2f0cde4: Add `Skeleton`: a decorative loading placeholder in `text`, `rect` and `circle` shapes, with multi-line text. It is hidden from assistive technology, stops its sweep for users who prefer reduced motion, and is drawn as an outline in forced-colors mode.
+- 24511ee: Add `Table` (with `TableHead`, `TableBody`, `TableRow`, `TableHeader` and `TableCell`): a data table on native table elements, with a caption, sortable column headings (`aria-sort`), numeric alignment, a compact size and striped rows. It scrolls sideways when it is too wide, and the scroll area is a focusable named region only while it overflows.
+  - @ohseungik/maru-tokens@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes
