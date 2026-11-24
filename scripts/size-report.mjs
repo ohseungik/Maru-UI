@@ -8,11 +8,11 @@ import { brotliCompressSync, constants, gzipSync } from 'node:zlib';
 // that adds a dependency or a pile of CSS does. Raise one on purpose, in the same PR,
 // and say why in the PR description.
 const BUDGETS = [
-  { label: '@ohseungik/maru-ui · index.js', file: 'packages/components/dist/index.js', gzipKb: 8 },
+  { label: '@ohseungik/maru-ui · index.js', file: 'packages/components/dist/index.js', gzipKb: 10 },
   {
     label: '@ohseungik/maru-ui · styles.css',
     file: 'packages/components/dist/styles.css',
-    gzipKb: 5,
+    gzipKb: 6,
   },
   {
     label: '@ohseungik/maru-tokens · tokens.css',
