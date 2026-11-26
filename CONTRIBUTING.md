@@ -65,6 +65,6 @@ ci: cache Playwright browsers
 2. `main`에 병합되면 릴리스 워크플로가 "version packages" PR을 엽니다.
 3. 그 PR을 병합하면 npm에 발행됩니다.
 
-`@ohseungik/maru-tokens`와 `@ohseungik/maru-ui`는 항상 같은 버전으로 발행됩니다. `1.0` 이전에는 호환성이 깨지는 변경을 `minor`, 그 외를 `patch`로 올립니다.
+`@ohseungik/maru-tokens`와 `@ohseungik/maru-ui`는 항상 같은 버전으로 발행됩니다. `1.0` 이전에는 호환성이 깨지는 변경과 새 컴포넌트·새 prop을 `minor`, 버그 수정을 `patch`로 올립니다.
 
 릴리스 워크플로는 기본적으로 꺼져 있습니다. npm 토큰 준비, GitHub 설정, 첫 릴리스 순서와 문제 해결은 [docs/releasing.md](./docs/releasing.md)에 정리했습니다.

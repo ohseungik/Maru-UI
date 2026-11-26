@@ -190,14 +190,15 @@ pnpm changeset    # 변경사항 기록 (릴리스용)
 
 ### 3주차: 릴리스
 
-- [x] Popover
-- [x] Skeleton
-- [x] Table
-- [x] Toast
-- [ ] Playwright 시각 회귀
-- [ ] 번들 크기 리포트
+- [x] Playwright 시각 회귀
+- [x] 번들 크기 리포트
 - [x] changesets 첫 릴리스 `0.1.0` + npm 발행
 - [ ] 문서 사이트 마무리 (시작하기, 접근성 원칙)
+
+### 0.1.1 ~ 0.1.2
+
+- [x] Popover, Skeleton, Table (`0.1.1`)
+- [x] Toast (`0.1.2`)
 
 ### 이후
 
